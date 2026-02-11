@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Request a Project - Bhavya Tech</title>
+    <link rel="stylesheet"
+     href="{{ url_for('static',
+     filename='style.css')}}">
+    <script src="script.js"></script>
+</head>
+<body>
+
+<header>
+    <h1>Bhavya Tech</h1>
+    <p>Your Idea, Our Technology</p>
+</header>
+
+<section class="form-section">
+    <h2>Request a Project</h2>
+<form action="{{ url_for('request_page') }}" method="POST">
+
+    <input type="text" name="name" placeholder="Your Name" required>
+
+    <input type="email" name="email" placeholder="Your Email" required>
+
+    <input type="text" name="mobile" placeholder="Mobile Number" required>
+
+    <textarea name="message" placeholder="Your Project Details" required></textarea>
+
+    <button type="submit">Submit</button>
+</form>
+    </form>
+</section>
+
+</body>
+</html>
