@@ -1,0 +1,153 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f4f6f8;
+    text-align: center;
+    color: #333;
+}
+
+/* Header */
+header {
+    background: #1e1e2f;
+    color: white;
+    padding: 50px 20px;
+}
+
+header h1 {
+    font-size: 40px;
+}
+
+header p {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+/* Services */
+.services {
+    padding: 40px 20px;
+}
+
+.services h2 {
+    margin-bottom: 25px;
+    font-size: 28px;
+}
+
+.card {
+    background: white;
+    margin: 10px auto;
+    padding: 15px;
+    max-width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    font-size: 16px;
+    display: block;
+    text-decoration: none;
+    color: #333;
+}
+
+/* Button */
+button {
+    margin-top: 30px;
+    padding: 12px 30px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    background: #0d6efd;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0b5ed7;
+}
+
+/* Footer */
+footer {
+    background: #222;
+    color: #aaa;
+    padding: 15px;
+    margin-top: 40px;
+}
+.form-section {
+    padding: 40px 20px;
+}
+
+form {
+    max-width: 400px;
+    margin: auto;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+.navbar {
+    background: #0d6efd;
+    padding: 15px;
+}
+
+.navbar a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+.services {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card {
+    width: 280px;
+    background: white;
+    padding: 18px;
+    margin: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+.thankyou-box {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 30px;
+    text-align: center;
+    background: #ffffff;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+
+.thankyou-box h1 {
+    color: #0a58ca;
+    margin-bottom: 10px;
+}
+
+.thankyou-box p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #0a58ca;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
