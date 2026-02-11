@@ -72,23 +72,28 @@ def send_email(name, email, mobile, message):
 @app.route("/")
 def home():
     return render_template("index.html")
-     @app.route("/services")
+
+
+
+    @app.route("/services")
 def services():
     return render_template("services.html")
 
+@app.route("/mobile")
+def mobile():
+    return render_template("mobile.html")
 
-@app.route("/web-development")
-def web_development():
-    return render_template("web.html")
+@app.route("/python")
+def python_service():
+    return render_template("python.html")
 
+@app.route("/software")
+def software():
+    return render_template("software.html")
 
-@app.route("/app-development")
-def app_development():
-    return render_template("app.html")
-    @app.route("/deployment")
-def deployment():
-    return render_template("deployment.html")
-
+@app.route("/website")
+def website():
+    return render_template("website.html")
 
 
 # ---------- REQUEST ----------
@@ -146,14 +151,4 @@ def logout():
 
 # ---------- RUN ----------
 if __name__== "__main__":
-    @app.route("/service1")
-def service1():
-    return render_template("service1.html")
-
-@app.route("/service2")
-def service2():
-    return render_template("service2.html")
-
-@app.route("/service3")
-def service3():
-    return render_template("service3.html")
+    
