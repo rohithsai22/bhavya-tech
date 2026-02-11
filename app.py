@@ -146,3 +146,14 @@ def logout():
 
 # ---------- RUN ----------
 if __name__== "__main__":
+    @app.route("/service1")
+def service1():
+    return render_template("service1.html")
+
+@app.route("/service2")
+def service2():
+    return render_template("service2.html")
+
+@app.route("/service3")
+def service3():
+    return render_template("service3.html")
