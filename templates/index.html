@@ -7,9 +7,7 @@
      href="{{ url_for('static',
      filename='style.css')}}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <a href="request.">Request
-        <button>Request a project</button>
-    </a>
+    
 </head>
 <body>
     <nav class="navbar">
@@ -26,23 +24,23 @@
     <section class="services">
         <h2>Our Services</h2>
 
-        <a href="web.html" class="card">🌐 Web Development</a>
-        <a href="mobile.html" class="card">📱 Mobile App Development</a>
-        <a href="software.html" class="card">💻 Software Solutions</a>
-        <a href="python.html" class="card">⚙️ Python Automation</a>
-<a href="request">
-        <button>Request a Project</button>
-</a">
+        <a href="/web" class="card">🌐 Web Development</a>
+        <a href="/mobile" class="card">📱 Mobile App Development</a>
+        <a href="/software" class="card">💻 Software Solutions</a>
+        <a href="/python" class="card">⚙️ Python Automation</a>
+<a href="/request">Contact</a>
+        
 <a href="/">Home</a>
     </section>
     <section class="form-section">
     <h2>Request a Project</h2>
 
-    <form>
-        <input type="text" placeholder="Your Name" required>
-        <input type="email" placeholder="Email Address" required>
+    <form method="post" action="/request">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Email Address" required>
+        <input type="text" name="mobile" placeholder="mobile Number">
         <input type="text" placeholder="Project Type (Website / App)">
-        <textarea placeholder="Describe your project" rows="5"></textarea>
+        <textarea name="message" rows="5"></textarea>
         
     </form>
 </section>

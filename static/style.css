@@ -11,6 +11,19 @@ body {
     color: #333;
 }
 
+/* Navbar */
+.navbar {
+    background: #0d6efd;
+    padding: 15px;
+}
+
+.navbar a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
 /* Header */
 header {
     background: #1e1e2f;
@@ -27,9 +40,12 @@ header p {
     font-size: 18px;
 }
 
-/* Services */
+/* Services Section */
 .services {
     padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .services h2 {
@@ -37,22 +53,46 @@ header p {
     font-size: 28px;
 }
 
+/* Service Cards */
 .card {
+    width: 280px;
     background: white;
-    margin: 10px auto;
-    padding: 15px;
-    max-width: 300px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    font-size: 16px;
-    display: block;
+    padding: 18px;
+    margin: 10px;
+    border-radius: 10px;
     text-decoration: none;
     color: #333;
+    font-size: 16px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-/* Button */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* Forms */
+.form-section {
+    padding: 40px 20px;
+}
+
+form {
+    max-width: 400px;
+    margin: auto;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Buttons */
 button {
-    margin-top: 30px;
+    margin-top: 20px;
     padding: 12px 30px;
     font-size: 16px;
     border: none;
@@ -73,56 +113,8 @@ footer {
     padding: 15px;
     margin-top: 40px;
 }
-.form-section {
-    padding: 40px 20px;
-}
 
-form {
-    max-width: 400px;
-    margin: auto;
-}
-
-input, textarea {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-.navbar {
-    background: #0d6efd;
-    padding: 15px;
-}
-
-.navbar a {
-    color: white;
-    margin: 0 15px;
-    text-decoration: none;
-    font-weight: bold;
-}
-.services {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.card {
-    width: 280px;
-    background: white;
-    padding: 18px;
-    margin: 10px;
-    border-radius: 10px;
-    text-decoration: none;
-    color: #333;
-    font-size: 16px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-}
+/* Thank You Page */
 .thankyou-box {
     max-width: 400px;
     margin: 100px auto;
