@@ -30,28 +30,6 @@ def save_to_db(name, email, mobile, message):
     conn.close()
 
 
-# ---------- EMAIL ----------
-def send_email(name, email, mobile, message):
-    msg = EmailMessage()
-    msg.set_content(
-        f"New Client Request\n\n"
-        f"Name: {name}\n"
-        f"Email: {email}\n"
-        f"Mobile: {mobile}\n"
-        f"Message: {message}"
-    )
-
-    msg["Subject"] = "New Request - Bhavya Tech"
-    msg["From"] = "rohithsai22@outlook.com"
-    msg["To"] = "rohithsai22@outlook.com"
-
-    server = smtplib.SMTP("smtp.office365.com", 587)
-    server.starttls()
-    server.login("rohithsai22@outlook.com", "Bhavana@21")
-    server.send_message(msg)
-    server.quit()
-
-
 # ---------- HOME ----------
 @app.route("/")
 def home():
@@ -139,5 +117,5 @@ def logout():
 
 
 # ---------- RUN ----------
-if __name___ == "__main__":
+if __name__ == "__main__":
     app.run(debug=True)
