@@ -110,7 +110,7 @@ def request_page():
         message = request.form.get("message")
 
         save_to_db(name, email, mobile, message)
-        send_email(name, email, mobile, message)
+        #send_email(name, email, mobile, message)
 
         return render_template("thankyou.html")
 
