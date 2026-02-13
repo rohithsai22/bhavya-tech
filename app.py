@@ -9,8 +9,8 @@ app = Flask(__name__)
 app.secret_key = "bhavya_super_secret_key"
 
 
-# ---------- DATABASE ----------
-def save_to_db(name, email, mobile, message):
+# ---------------- DATABASE INIT ----------------
+def init_db():
     conn = sqlite3.connect("database.db")
     cur = conn.cursor()
     cur.execute("""
@@ -22,6 +22,15 @@ def save_to_db(name, email, mobile, message):
             message TEXT
         )
     """)
+    conn.commit()
+    conn.close()
+
+init_db()
+
+
+def save_to_db(name, email, mobile, message):
+    conn = sqlite3.connect("database.db")
+    cur = conn.cursor()
     cur.execute(
         "INSERT INTO requests (name, email, mobile, message) VALUES (?, ?, ?, ?)",
         (name, email, mobile, message)
@@ -30,7 +39,36 @@ def save_to_db(name, email, mobile, message):
     conn.close()
 
 
-# ---------- HOME ----------
+# ---------------- EMAIL FUNCTION ----------------
+def send_email(name, email, mobile, message):
+    try:
+        msg = EmailMessage()
+        msg.set_content(
+            f"New Client Request\n\n"
+            f"Name: {name}\n"
+            f"Email: {email}\n"
+            f"Mobile: {mobile}\n"
+            f"Message: {message}"
+        )
+
+        msg["Subject"] = "New Request - Bhavya Tech"
+        msg["From"] = os.environ.get("EMAIL_USER")
+        msg["To"] = os.environ.get("EMAIL_USER")
+
+        server = smtplib.SMTP("smtp.office365.com", 587)
+        server.starttls()
+        server.login(
+            os.environ.get("EMAIL_USER"),
+            os.environ.get("EMAIL_PASS")
+        )
+        server.send_message(msg)
+        server.quit()
+    except Exception as e:
+        print("Email error:", e)
+
+
+# ---------------- ROUTES ----------------
+
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -61,7 +99,8 @@ def website():
     return render_template("website.html")
 
 
-# ---------- REQUEST ----------
+# ---------------- REQUEST PAGE ----------------
+
 @app.route("/request", methods=["GET", "POST"])
 def request_page():
     if request.method == "POST":
@@ -71,12 +110,15 @@ def request_page():
         message = request.form.get("message")
 
         save_to_db(name, email, mobile, message)
+        send_email(name, email, mobile, message)
+
         return render_template("thankyou.html")
 
     return render_template("request.html")
 
 
-# ---------- ADMIN ----------
+# ---------------- ADMIN ----------------
+
 admin_username = "admin"
 admin_password_hash = generate_password_hash("88851")
 
@@ -98,8 +140,8 @@ def admin():
 @app.route("/admin-login", methods=["GET", "POST"])
 def admin_login():
     if request.method == "POST":
-        username = request.form["username"]
-        password = request.form["password"]
+        username = request.form.get("username")
+        password = request.form.get("password")
 
         if username == admin_username and check_password_hash(admin_password_hash, password):
             session["admin"] = True
@@ -116,6 +158,7 @@ def logout():
     return redirect("/")
 
 
-# ---------- RUN ----------
+# ---------------- RUN ----------------
+
 if __name__ == "__main__":
     app.run(debug=True)
