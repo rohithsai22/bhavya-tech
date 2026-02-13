@@ -5,7 +5,7 @@ import smtplib
 from email.message import EmailMessage
 import os
 
-app = Flask(_name_)
+app = Flask(__name__)
 app.secret_key = "bhavya_super_secret_key"
 
 
@@ -139,6 +139,5 @@ def logout():
 
 
 # ---------- RUN ----------
-if _name_ == "_main_":
-    port = int(os.environ.get("PORT", 10000))
-    app.run(host="0.0.0.0", port=port)
+if __name___ == "__main__":
+    app.run(debug=True)
