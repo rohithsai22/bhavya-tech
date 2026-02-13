@@ -37,7 +37,7 @@ def save_to_db(name, email, mobile, message):
 
 
 # ---------------- EMAIL ----------------
-def #send_email(name, email, mobile, message):
+def send_email(name, email, mobile, message):
     try:
         msg = EmailMessage()
         msg.set_content(
