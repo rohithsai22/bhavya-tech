@@ -54,7 +54,7 @@ def send_email(name, email, mobile, message):
 
         server = smtplib.SMTP("smtp.office365.com", 587)
         server.starttls()
-        #server.login("rohithsai22@outlook.com", "Bhavana@21")  # your password
+        server.login("Rohithsai22@outlook.com", "Bhavana@20")  # your password
         server.send_message(msg)
         server.quit()
     except:
