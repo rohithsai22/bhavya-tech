@@ -3,35 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Request a Project - Bhavya Tech</title>
-    <link rel="stylesheet"
-     href="{{ url_for('static',
-     filename='style.css')}}">
-    <script src="script.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
 
-<header>
-    <h1>Bhavya Tech</h1>
-    <p>Your Idea, Our Technology</p>
+<!-- NAVBAR -->
+<nav class="navbar">
     <a href="/">Home</a>
+    <a href="/services">Services</a>
+    <a href="/request">Contact</a>
+</nav>
+
+<!-- HEADER -->
+<header>
+    <h1>Request a Project</h1>
+    <p>Tell us about your idea and we will build it.</p>
 </header>
 
+<!-- FORM SECTION -->
 <section class="form-section">
-    <h2>Request a Project</h2>
-<form action="{{ url_for('request_page') }}" method="POST">
 
-    <input type="text" name="name" placeholder="Your Name" required>
+    <form action="{{ url_for('request_page') }}" method="POST">
 
-    <input type="email" name="email" placeholder="Your Email" required>
+        <input type="text" name="name" placeholder="Your Name" required>
 
-    <input type="text" name="mobile" placeholder="Mobile Number" required>
+        <input type="email" name="email" placeholder="Your Email" required>
 
-    <textarea name="message" placeholder="Your Project Details" required></textarea>
+        <input type="text" name="mobile" placeholder="Mobile Number" required>
 
-    <!-- THIS IS THE SUBMIT BUTTON -->
-    <button type="submit">Submit</button>
-</form>
+        <textarea name="message" rows="5" placeholder="Your Project Details" required></textarea>
+
+        <button type="submit">Submit Request</button>
+
+    </form>
+
 </section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 Bhavya Tech. All rights reserved.</p>
+</footer>
 
 </body>
 </html>

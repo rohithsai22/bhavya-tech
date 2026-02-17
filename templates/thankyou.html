@@ -3,17 +3,37 @@
 <head>
     <title>Thank You - Bhavya Tech</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" 
-    href="{{ url_for('static',
-     filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
 
-<div class="thankyou-box">
-    <h1>Thank You 🙏</h1>
-    <p>Bhavya Tech will contact you soon.</p>
-    <a href="/" class="btn">Go Back Home</a>
-</div>
+<!-- NAVBAR -->
+<nav class="navbar">
+    <a href="/">Home</a>
+    <a href="/services">Services</a>
+    <a href="/request">Contact</a>
+</nav>
+
+<!-- THANK YOU SECTION -->
+<section class="form-section">
+
+    <div class="thankyou-box">
+        <h1>Thank You 🙏</h1>
+        <p>Your request has been submitted successfully.</p>
+        <p>Bhavya Tech will contact you shortly.</p>
+
+        <br>
+
+        <a href="/" class="btn">Go Back Home</a>
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 Bhavya Tech. All rights reserved.</p>
+</footer>
 
 </body>
 </html>

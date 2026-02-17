@@ -1,5 +1,62 @@
-<h1>Web Development</h1>
-<p>We build modern,responsive websites.</p>
-<a href="/">Home</a>
-<a href="/">⬅ Back</a>
-<a href="/services">⬅ Back</a>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web Development - Bhavya Tech</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <a href="/">Home</a>
+    <a href="/services">Services</a>
+    <a href="/request">Contact</a>
+</nav>
+
+<!-- HEADER -->
+<header>
+    <h1>🌐 Web Development</h1>
+    <p>Modern, responsive and high-performance websites.</p>
+</header>
+
+<!-- CONTENT SECTION -->
+<section class="services">
+
+    <div class="card" style="max-width:600px; margin:auto;">
+
+        <p>
+            We design and develop professional websites 
+            that are fast, secure, and mobile responsive.
+        </p>
+
+        <br>
+
+        <p>
+            ✔ Business Websites  
+            ✔ Portfolio Websites  
+            ✔ E-Commerce Websites  
+            ✔ Custom Web Applications  
+            ✔ SEO Optimized Design  
+        </p>
+
+        <br>
+
+        <a href="/request" class="btn">Start Your Project</a>
+
+    </div>
+
+    <br><br>
+
+    <a href="/services" class="btn">⬅ Back to Services</a>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 Bhavya Tech. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

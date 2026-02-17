@@ -7,6 +7,7 @@ from email.message import EmailMessage
 app = Flask(__name__)
 app.secret_key = "bhavya_super_secret_key"
 
+
 # ---------------- DATABASE ----------------
 def init_db():
     conn = sqlite3.connect("database.db")
@@ -25,6 +26,7 @@ def init_db():
 
 init_db()
 
+
 def save_to_db(name, email, mobile, message):
     conn = sqlite3.connect("database.db")
     cur = conn.cursor()
@@ -36,55 +38,36 @@ def save_to_db(name, email, mobile, message):
     conn.close()
 
 
-# ---------------- EMAIL ----------------
-def send_email(name, email, mobile, message):
-    try:
-        msg = EmailMessage()
-        msg.set_content(
-            f"New Client Request\n\n"
-            f"Name: {name}\n"
-            f"Email: {email}\n"
-            f"Mobile: {mobile}\n"
-            f"Message: {message}"
-        )
-
-        msg["Subject"] = "New Request - Bhavya Tech"
-        msg["From"] = "rohithsai22@outlook.com"  # replace with your email
-        msg["To"] = "rohithsai22@outlook.com"    # replace with your email
-
-        server = smtplib.SMTP("smtp.office365.com", 587)
-        server.starttls()
-        server.login("Rohithsai22@outlook.com", "Bhavana@22")  # your password
-        server.send_message(msg)
-        server.quit()
-    except:
-        print("Email sending failed")
-
-
 # ---------------- ROUTES ----------------
 @app.route("/")
 def home():
     return render_template("index.html")
 
+
 @app.route("/services")
 def services():
     return render_template("services.html")
+
 
 @app.route("/mobile")
 def mobile():
     return render_template("mobile.html")
 
+
 @app.route("/python")
 def python_service():
     return render_template("python.html")
+
 
 @app.route("/software")
 def software():
     return render_template("software.html")
 
+
 @app.route("/website")
 def website():
     return render_template("website.html")
+
 
 # ---------------- REQUEST FORM ----------------
 @app.route("/request", methods=["GET", "POST"])
@@ -96,15 +79,15 @@ def request_page():
         message = request.form.get("message")
 
         save_to_db(name, email, mobile, message)
-        # send_email(name, email, mobile, message)  # optional
-
         return render_template("thankyou.html")
 
     return render_template("request.html")
 
+
 # ---------------- ADMIN ----------------
 admin_username = "admin"
 admin_password_hash = generate_password_hash("88851")
+
 
 @app.route("/admin")
 def admin():
@@ -116,7 +99,9 @@ def admin():
     cur.execute("SELECT * FROM requests ORDER BY id DESC")
     data = cur.fetchall()
     conn.close()
+
     return render_template("admin.html", data=data)
+
 
 @app.route("/admin-login", methods=["GET", "POST"])
 def admin_login():
@@ -132,11 +117,13 @@ def admin_login():
 
     return render_template("admin_login.html")
 
+
 @app.route("/logout")
 def logout():
     session.pop("admin", None)
     return redirect("/")
 
+
 # ---------------- RUN ----------------
-if __name__ == "_main_":
+if __name__ == "__main__":
     app.run(debug=True)

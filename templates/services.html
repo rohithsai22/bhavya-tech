@@ -1,19 +1,59 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Our Services</title>
+    <title>Our Services - Bhavya Tech</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
-    <h1>Our Services</h1>
+
+<!-- NAVBAR -->
+<nav class="navbar">
     <a href="/">Home</a>
+    <a href="/services">Services</a>
+    <a href="/request">Contact</a>
+</nav>
 
-    <ul>
-        <li><a href="/mobile">Mobile</a></li>
-        <li><a href="/python">Python</a></li>
-        <li><a href="/software">Software</a></li>
-        <li><a href="/website">Website</a></li>
-    </ul>
+<!-- HEADER -->
+<header>
+    <h1>Our Services</h1>
+    <p>We provide high-quality technology solutions.</p>
+</header>
 
-    <a href="/">⬅ Back to Home</a>
+<!-- SERVICES SECTION -->
+<section class="services">
+
+    <div class="service-container">
+
+        <a href="/website" class="card">
+            <h3>🌐 Website Development</h3>
+            <p>Modern responsive websites for businesses.</p>
+        </a>
+
+        <a href="/mobile" class="card">
+            <h3>📱 Mobile App Development</h3>
+            <p>Android & iOS application development.</p>
+        </a>
+
+        <a href="/software" class="card">
+            <h3>💻 Software Solutions</h3>
+            <p>Custom desktop software applications.</p>
+        </a>
+
+        <a href="/python" class="card">
+            <h3>⚙️ Python Automation</h3>
+            <p>Automation, APIs & backend solutions.</p>
+        </a>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 Bhavya Tech. All rights reserved.</p>
+</footer>
+
 </body>
 </html>

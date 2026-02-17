@@ -1,146 +1,171 @@
+/* Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', sans-serif;
 }
 
 body {
-    background: #f4f6f8;
-    text-align: center;
+    background: linear-gradient(135deg, #eef2f7, #dbeafe);
     color: #333;
 }
 
-/* Navbar */
+/* ================= NAVBAR ================= */
 .navbar {
     background: #0d6efd;
-    padding: 15px;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
 }
 
 .navbar a {
     color: white;
-    margin: 0 15px;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
+    transition: 0.3s;
 }
 
-/* Header */
+.navbar a:hover {
+    color: #ffd700;
+}
+
+/* ================= HEADER ================= */
 header {
-    background: #1e1e2f;
+    background: linear-gradient(135deg, #1e1e2f, #0d6efd);
     color: white;
-    padding: 50px 20px;
+    padding: 70px 20px;
+    text-align: center;
 }
 
 header h1 {
-    font-size: 40px;
+    font-size: 42px;
+    margin-bottom: 15px;
 }
 
 header p {
-    margin-top: 10px;
     font-size: 18px;
+    opacity: 0.9;
 }
 
-/* Services Section */
+/* ================= SERVICES SECTION ================= */
 .services {
-    padding: 40px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 60px 20px;
+    text-align: center;
 }
 
 .services h2 {
-    margin-bottom: 25px;
-    font-size: 28px;
+    font-size: 30px;
+    margin-bottom: 40px;
 }
 
-/* Service Cards */
+/* Card Container */
+.service-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+/* ================= SERVICE CARDS ================= */
 .card {
-    width: 280px;
+    width: 260px;
     background: white;
-    padding: 18px;
-    margin: 10px;
-    border-radius: 10px;
+    padding: 25px;
+    border-radius: 15px;
     text-decoration: none;
     color: #333;
     font-size: 16px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    transition: 0.4s ease;
+}
+
+.card h3 {
+    margin-bottom: 10px;
+    color: #0d6efd;
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
-/* Forms */
+/* ================= FORMS ================= */
 .form-section {
-    padding: 40px 20px;
+    padding: 60px 20px;
+    text-align: center;
 }
 
 form {
-    max-width: 400px;
+    max-width: 450px;
     margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
 }
 
 input, textarea {
     width: 100%;
     padding: 12px;
-    margin: 10px 0;
-    border-radius: 5px;
+    margin: 12px 0;
+    border-radius: 8px;
     border: 1px solid #ccc;
+    font-size: 14px;
 }
 
-/* Buttons */
+/* ================= BUTTON ================= */
 button {
-  display: block;
-  visibility: visible;
-  z-index: 10;
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+    width: 100%;
+    padding: 12px;
+    background: #0d6efd;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
 }
 
 button:hover {
     background: #0b5ed7;
 }
 
-/* Footer */
+/* ================= FOOTER ================= */
 footer {
-    background: #222;
+    background: #111;
     color: #aaa;
-    padding: 15px;
-    margin-top: 40px;
+    padding: 20px;
+    text-align: center;
+    margin-top: 50px;
 }
 
-/* Thank You Page */
+/* ================= THANK YOU PAGE ================= */
 .thankyou-box {
     max-width: 400px;
-    margin: 100px auto;
-    padding: 30px;
+    margin: 120px auto;
+    padding: 40px;
     text-align: center;
-    background: #ffffff;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    border-radius: 10px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.15);
 }
 
 .thankyou-box h1 {
-    color: #0a58ca;
-    margin-bottom: 10px;
+    color: #0d6efd;
+    margin-bottom: 15px;
 }
 
 .thankyou-box p {
-    font-size: 16px;
     margin-bottom: 20px;
 }
 
 .btn {
     display: inline-block;
-    padding: 10px 20px;
-    background: #0a58ca;
+    padding: 10px 25px;
+    background: #0d6efd;
     color: white;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 8px;
 }

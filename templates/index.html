@@ -3,51 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <title>Bhavya Tech</title>
-    <link rel="stylesheet"
-     href="{{ url_for('static',
-     filename='style.css')}}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
-    <nav class="navbar">
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar">
     <a href="/">Home</a>
     <a href="/services">Services</a>
-    <a href="request">Contact</a>
+    <a href="/request">Contact</a>
 </nav>
 
-    <header>
-        <h1>Bhavya Tech</h1>
-        <p>Your Idea, Our Technology</p>
-    </header>
+<!-- ================= HEADER ================= -->
+<header>
+    <h1>Bhavya Tech</h1>
+    <p>Your Idea, Our Technology</p>
+</header>
 
-    <section class="services">
-        <h2>Our Services</h2>
+<!-- ================= SERVICES ================= -->
+<section class="services">
+    <h2>Our Services</h2>
 
-        <a href="/website" class="card">🌐 Web Development</a>
-        <a href="/mobile" class="card">📱 Mobile App Development</a>
-        <a href="/software" class="card">💻 Software Solutions</a>
-        <a href="/python" class="card">⚙️ Python Automation</a>
-<a href="/request">Contact</a>
-        
-<a href="/">Home</a>
-    </section>
-    <section class="form-section">
+    <div class="service-container">
+
+        <a href="/website" class="card">
+            🌐 Web Development
+        </a>
+
+        <a href="/mobile" class="card">
+            📱 Mobile App Development
+        </a>
+
+        <a href="/software" class="card">
+            💻 Software Solutions
+        </a>
+
+        <a href="/python" class="card">
+            ⚙️ Python Automation
+        </a>
+
+    </div>
+</section>
+
+<!-- ================= REQUEST FORM ================= -->
+<section class="form-section">
     <h2>Request a Project</h2>
 
-    <form method="post" action="/request">
+    <form method="POST" action="/request">
+
         <input type="text" name="name" placeholder="Your Name" required>
+
         <input type="email" name="email" placeholder="Email Address" required>
-        <input type="text" name="mobile" placeholder="mobile Number">
-        <input type="text" placeholder="Project Type (Website / App)">
-        <textarea name="message" rows="5"></textarea>
-        
+
+        <input type="text" name="mobile" placeholder="Mobile Number">
+
+        <input type="text" name="project_type" placeholder="Project Type (Website / App)">
+
+        <textarea name="message" rows="5" placeholder="Project Details"></textarea>
+
+        <!-- ✅ IMPORTANT: SUBMIT BUTTON -->
+        <button type="submit">Submit Request</button>
+
     </form>
 </section>
 
-    <footer>
-        <p>© 2026 Bhavya Tech. All rights reserved.</p>
-    </footer>
+<!-- ================= FOOTER ================= -->
+<footer>
+    <p>© 2026 Bhavya Tech. All rights reserved.</p>
+</footer>
 
 </body>
 </html>

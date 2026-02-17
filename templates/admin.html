@@ -1,35 +1,101 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Admin - Bhavya Tech</title>
-    <link rel="stylesheet" 
-    href="{{ url_for('static',
-     filename='style.css') }}">
+    <title>Admin Dashboard - Bhavya Tech</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <style>
+        .admin-container {
+            padding: 40px;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .admin-header h2 {
+            color: #0d6efd;
+        }
+
+        .logout-btn {
+            padding: 8px 15px;
+            background: #dc3545;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        .logout-btn:hover {
+            background: #bb2d3b;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th {
+            background: #0d6efd;
+            color: white;
+            padding: 12px;
+        }
+
+        td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        tr:hover {
+            background: #f1f5ff;
+        }
+    </style>
 </head>
+
 <body>
-    
 
-<h2 style="text-align:center;">Client Requests</h2>
+<div class="admin-container">
 
-<table border="1" cellpadding="10" style="margin:auto;">
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Mobile</th>
-        <th>Message</th>
-    </tr>
+    <div class="admin-header">
+        <h2>Client Requests</h2>
+        <a href="/logout" class="logout-btn">Logout</a>
+    </div>
 
-    {% for row in data %}
-    <tr>
-        <td>{{ row[0] }}</td>
-        <td>{{ row[1] }}</td>
-        <td>{{ row[2] }}</td>
-        <td>{{ row[3] }}</td>
-        <td>{{ row[4] }}</td>
-    </tr>
-    {% endfor %}
-</table>
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Message</th>
+            </tr>
+
+            {% for row in data %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td>{{ row[4] }}</td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+
+</div>
 
 </body>
 </html>
