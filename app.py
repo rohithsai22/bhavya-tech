@@ -1,8 +1,5 @@
 from flask import Flask, render_template, request, redirect, session
-from werkzeug.security import generate_password_hash, check_password_hash
 import sqlite3
-import smtplib
-from email.message import EmailMessage
 
 app = Flask(__name__)
 app.secret_key = "bhavya_super_secret_key"
@@ -79,14 +76,15 @@ def request_page():
         message = request.form.get("message")
 
         save_to_db(name, email, mobile, message)
+
         return render_template("thankyou.html")
 
     return render_template("request.html")
 
 
-# ---------------- ADMIN ----------------
-admin_username = "admin"
-admin_password_hash = generate_password_hash("88851")
+# ---------------- ADMIN LOGIN ----------------
+admin_username = "rohith"
+admin_password = "83418"
 
 
 @app.route("/admin")
@@ -109,7 +107,7 @@ def admin_login():
         username = request.form.get("username")
         password = request.form.get("password")
 
-        if username == admin_username and check_password_hash(admin_password_hash, password):
+        if username == admin_username and password == admin_password:
             session["admin"] = True
             return redirect("/admin")
         else:
