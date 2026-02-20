@@ -1,5 +1,8 @@
 from flask import Flask, render_template, request, redirect, session
 import sqlite3
+import os
+import smtplib
+from email.message import EmailMessage
 
 app = Flask(__name__)
 app.secret_key = "bhavya_super_secret_key"
@@ -33,6 +36,42 @@ def save_to_db(name, email, mobile, message):
     )
     conn.commit()
     conn.close()
+
+
+# ---------------- EMAIL FUNCTION ----------------
+def send_email(name, email, mobile, message):
+    try:
+        EMAIL_USER = os.environ.get("EMAIL_USER")
+        EMAIL_PASS = os.environ.get("EMAIL_PASS")
+
+        if not EMAIL_USER or not EMAIL_PASS:
+            print("Email environment variables not set!")
+            return
+
+        msg = EmailMessage()
+        msg["Subject"] = "New Request - Bhavya Tech"
+        msg["From"] = EMAIL_USER
+        msg["To"] = EMAIL_USER
+
+        msg.set_content(f"""
+New Client Request
+
+Name: {name}
+Email: {email}
+Mobile: {mobile}
+Message: {message}
+""")
+
+        server = smtplib.SMTP("smtp.gmail.com", 587)
+        server.starttls()
+        server.login(EMAIL_USER, EMAIL_PASS)
+        server.send_message(msg)
+        server.quit()
+
+        print("Email sent successfully!")
+
+    except Exception as e:
+        print("Email sending failed:", e)
 
 
 # ---------------- ROUTES ----------------
@@ -76,15 +115,16 @@ def request_page():
         message = request.form.get("message")
 
         save_to_db(name, email, mobile, message)
+        send_email(name, email, mobile, message)
 
         return render_template("thankyou.html")
 
     return render_template("request.html")
 
 
-# ---------------- ADMIN LOGIN ----------------
-admin_username = "rohith"
-admin_password = "83418"
+# ---------------- ADMIN ----------------
+admin_username = "admin"
+admin_password = "88851"
 
 
 @app.route("/admin")
