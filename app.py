@@ -62,7 +62,8 @@ Mobile: {mobile}
 Message: {message}
 """)
 
-        server = smtplib.SMTP("smtp.gmail.com", 587)
+        # ✅ Add timeout here (VERY IMPORTANT)
+        server = smtplib.SMTP("smtp.gmail.com", 587, timeout=10)
         server.starttls()
         server.login(EMAIL_USER, EMAIL_PASS)
         server.send_message(msg)
@@ -72,8 +73,7 @@ Message: {message}
 
     except Exception as e:
         print("Email sending failed:", e)
-
-
+        
 # ---------------- ROUTES ----------------
 @app.route("/")
 def home():
