@@ -73,7 +73,7 @@ Message: {message}
 
     except Exception as e:
         print("Email sending failed:", e)
-        
+
 # ---------------- ROUTES ----------------
 @app.route("/")
 def home():
@@ -123,8 +123,8 @@ def request_page():
 
 
 # ---------------- ADMIN ----------------
-admin_username = "admin"
-admin_password = "88851"
+admin_username = "bhavya"
+admin_password = "83418"
 
 
 @app.route("/admin")
