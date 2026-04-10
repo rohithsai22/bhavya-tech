@@ -3,45 +3,19 @@ import sqlite3
 import os
 import smtplib
 from email.message import EmailMessage
-from openai import OpenAI
 
 app = Flask(__name__)
-app.secret_key = os.environ.get("SECRET_KEY", "bhavya_secret")
-
-# ---------------- AI SETUP ----------------
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
-
-def generate_website(user_input):
-    try:
-        response = client.chat.completions.create(
-            model="gpt-4o-mini",
-            messages=[
-                {
-                    "role": "user",
-                    "content": f"""
-Create a professional real-world website.
-
-Requirements:
-- Clean modern UI
-- Looks like built by developer (not AI)
-- Include navbar, hero, services, contact, footer
-- Responsive design
-
-Idea: {user_input}
-
-Return only full HTML with internal CSS.
-"""
-                }
-            ]
-        )
-        return response.choices[0].message.content
-    except Exception as e:
-        return f"<h2>Error generating website</h2><p>{e}</p>"
-
+app.secret_key = "bhavya_super_secret_key"
 
 # ---------------- DATABASE ----------------
+BASE_DIR = os.getcwd()
+DB_PATH = os.path.join(BASE_DIR, "database.db")
+
+def get_db():
+    return sqlite3.connect(DB_PATH)
+
 def init_db():
-    conn = sqlite3.connect("database.db")
+    conn = get_db()
     cur = conn.cursor()
     cur.execute("""
         CREATE TABLE IF NOT EXISTS requests (
@@ -57,9 +31,8 @@ def init_db():
 
 init_db()
 
-
 def save_to_db(name, email, mobile, message):
-    conn = sqlite3.connect("database.db")
+    conn = get_db()
     cur = conn.cursor()
     cur.execute(
         "INSERT INTO requests (name, email, mobile, message) VALUES (?, ?, ?, ?)",
@@ -69,14 +42,14 @@ def save_to_db(name, email, mobile, message):
     conn.close()
 
 
-# ---------------- EMAIL ----------------
+# ---------------- EMAIL (OPTIONAL) ----------------
 def send_email(name, email, mobile, message):
     try:
         EMAIL_USER = os.environ.get("EMAIL_USER")
         EMAIL_PASS = os.environ.get("EMAIL_PASS")
 
         if not EMAIL_USER or not EMAIL_PASS:
-            print("❌ Email config missing")
+            print("Email not configured")
             return
 
         msg = EmailMessage()
@@ -99,10 +72,10 @@ Message: {message}
         server.send_message(msg)
         server.quit()
 
-        print("✅ Email sent")
+        print("Email sent!")
 
     except Exception as e:
-        print("❌ Email failed:", e)
+        print("Email failed:", e)
 
 
 # ---------------- ROUTES ----------------
@@ -110,44 +83,28 @@ Message: {message}
 def home():
     return render_template("index.html")
 
-
 @app.route("/services")
 def services():
-    return render_template("services.html")
-
+    return render_template("service.html")
 
 @app.route("/mobile")
 def mobile():
     return render_template("mobile.html")
 
-
 @app.route("/python")
 def python_service():
     return render_template("python.html")
 
-
 @app.route("/software")
 def software():
     return render_template("software.html")
-
 
 @app.route("/website")
 def website():
     return render_template("website.html")
 
 
-# ---------------- AI BUILDER ----------------
-@app.route("/create", methods=["GET", "POST"])
-def create():
-    if request.method == "POST":
-        idea = request.form.get("idea")
-        result = generate_website(idea)
-        return render_template("result.html", code=result)
-
-    return render_template("create.html")
-
-
-# ---------------- REQUEST ----------------
+# ---------------- REQUEST FORM ----------------
 @app.route("/request", methods=["GET", "POST"])
 def request_page():
     if request.method == "POST":
@@ -157,7 +114,9 @@ def request_page():
         message = request.form.get("message")
 
         save_to_db(name, email, mobile, message)
-       # send_email(name, email, mobile, message)
+
+        # TEMP OFF (avoid crash)
+        # send_email(name, email, mobile, message)
 
         return render_template("thankyou.html")
 
@@ -165,16 +124,15 @@ def request_page():
 
 
 # ---------------- ADMIN ----------------
-admin_username = os.environ.get("ADMIN_USER", "admin")
-admin_password = os.environ.get("ADMIN_PASS", "12345")
-
+admin_username = "bhavya"
+admin_password = "83418"
 
 @app.route("/admin")
 def admin():
     if not session.get("admin"):
         return redirect("/admin-login")
 
-    conn = sqlite3.connect("database.db")
+    conn = get_db()
     cur = conn.cursor()
     cur.execute("SELECT * FROM requests ORDER BY id DESC")
     data = cur.fetchall()
@@ -193,7 +151,7 @@ def admin_login():
             session["admin"] = True
             return redirect("/admin")
         else:
-            return render_template("admin_login.html", error="Invalid credentials")
+            return "Invalid Username or Password"
 
     return render_template("admin_login.html")
 
