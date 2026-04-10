@@ -5,7 +5,7 @@ import smtplib
 from email.message import EmailMessage
 from openai import OpenAI
 
-app = Flask(_name_)
+app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", "bhavya_secret")
 
 # ---------------- AI SETUP ----------------
@@ -205,5 +205,5 @@ def logout():
 
 
 # ---------------- RUN ----------------
-if _name_ == "_main_":
-    app.run(debug=True
+if __name__ == "__main__":
+    app.run(debug=True)
