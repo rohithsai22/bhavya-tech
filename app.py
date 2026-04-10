@@ -1,15 +1,12 @@
 from flask import Flask, render_template, request, redirect, session
 import sqlite3
 import os
-import smtplib
-from email.message import EmailMessage
 
 app = Flask(__name__)
-app.secret_key = "bhavya_super_secret_key"
+app.secret_key = "bhavya_secret"
 
 # ---------------- DATABASE ----------------
-BASE_DIR = os.getcwd()
-DB_PATH = os.path.join(BASE_DIR, "database.db")
+DB_PATH = os.path.join(os.getcwd(), "database.db")
 
 def get_db():
     return sqlite3.connect(DB_PATH)
@@ -41,43 +38,6 @@ def save_to_db(name, email, mobile, message):
     conn.commit()
     conn.close()
 
-
-# ---------------- EMAIL (OPTIONAL) ----------------
-def send_email(name, email, mobile, message):
-    try:
-        EMAIL_USER = os.environ.get("EMAIL_USER")
-        EMAIL_PASS = os.environ.get("EMAIL_PASS")
-
-        if not EMAIL_USER or not EMAIL_PASS:
-            print("Email not configured")
-            return
-
-        msg = EmailMessage()
-        msg["Subject"] = "New Request - Bhavya Tech"
-        msg["From"] = EMAIL_USER
-        msg["To"] = EMAIL_USER
-
-        msg.set_content(f"""
-New Client Request
-
-Name: {name}
-Email: {email}
-Mobile: {mobile}
-Message: {message}
-""")
-
-        server = smtplib.SMTP("smtp.gmail.com", 587, timeout=10)
-        server.starttls()
-        server.login(EMAIL_USER, EMAIL_PASS)
-        server.send_message(msg)
-        server.quit()
-
-        print("Email sent!")
-
-    except Exception as e:
-        print("Email failed:", e)
-
-
 # ---------------- ROUTES ----------------
 @app.route("/")
 def home():
@@ -92,7 +52,7 @@ def mobile():
     return render_template("mobile.html")
 
 @app.route("/python")
-def python_service():
+def python_page():
     return render_template("python.html")
 
 @app.route("/software")
@@ -103,8 +63,7 @@ def software():
 def website():
     return render_template("website.html")
 
-
-# ---------------- REQUEST FORM ----------------
+# ---------------- REQUEST ----------------
 @app.route("/request", methods=["GET", "POST"])
 def request_page():
     if request.method == "POST":
@@ -115,13 +74,9 @@ def request_page():
 
         save_to_db(name, email, mobile, message)
 
-        # TEMP OFF (avoid crash)
-        # send_email(name, email, mobile, message)
-
         return render_template("thankyou.html")
 
     return render_template("request.html")
-
 
 # ---------------- ADMIN ----------------
 admin_username = "bhavya"
@@ -140,7 +95,6 @@ def admin():
 
     return render_template("admin.html", data=data)
 
-
 @app.route("/admin-login", methods=["GET", "POST"])
 def admin_login():
     if request.method == "POST":
@@ -155,13 +109,10 @@ def admin_login():
 
     return render_template("admin_login.html")
 
-
 @app.route("/logout")
 def logout():
     session.pop("admin", None)
     return redirect("/")
 
-
-# ---------------- RUN ----------------
 if __name__ == "__main__":
     app.run()
