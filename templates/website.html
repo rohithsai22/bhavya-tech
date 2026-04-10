@@ -1,62 +1,27 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Web Development - Bhavya Tech</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
+{% extends "base.html" %}
 
-<body>
+{% block content %}
 
-<!-- NAVBAR -->
-<nav class="navbar">
-    <a href="/">Home</a>
-    <a href="/services">Services</a>
-    <a href="/request">Contact</a>
-</nav>
-
-<!-- HEADER -->
 <header>
     <h1>🌐 Web Development</h1>
-    <p>Modern, responsive and high-performance websites.</p>
 </header>
 
-<!-- CONTENT SECTION -->
 <section class="services">
 
-    <div class="card" style="max-width:600px; margin:auto;">
+    <div class="card center-card">
 
-        <p>
-            We design and develop professional websites 
-            that are fast, secure, and mobile responsive.
-        </p>
+        <p>We build modern responsive websites.</p>
 
-        <br>
+        <ul>
+            <li>Business Websites</li>
+            <li>E-Commerce</li>
+            <li>Portfolio Sites</li>
+        </ul>
 
-        <p>
-            ✔ Business Websites  
-            ✔ Portfolio Websites  
-            ✔ E-Commerce Websites  
-            ✔ Custom Web Applications  
-            ✔ SEO Optimized Design  
-        </p>
-
-        <br>
-
-        <a href="/request" class="btn">Start Your Project</a>
+        <a href="/request" class="btn">Start Project</a>
 
     </div>
 
-    <br><br>
-
-    <a href="/services" class="btn">⬅ Back to Services</a>
-
 </section>
 
-<!-- FOOTER -->
-<footer>
-    <p>© 2026 Bhavya Tech. All rights reserved.</p>
-</footer>
-
-</body>
-</html>
+{% endblock %}

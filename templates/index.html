@@ -12,16 +12,24 @@
 
 <!-- ================= NAVBAR ================= -->
 <nav class="navbar">
-    <a href="/">Home</a>
-    <a href="/services">Services</a>
-    <a href="/request">Contact</a>
+    <div class="logo">Bhavya Tech</div>
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/services">Services</a>
+        <a href="/request">Contact</a>
+        <a href="/create" class="btn-nav">Start Project</a>
+    </div>
 </nav>
 
-<!-- ================= HEADER ================= -->
-<header>
-    <h1>Bhavya Tech</h1>
-    <p>Your Idea, Our Technology</p>
-</header>
+<!-- ================= HERO SECTION ================= -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Build Your Digital Future</h1>
+        <p>We create Websites, Apps & Smart Solutions</p>
+        <a href="/create" class="btn">Start Your Project</a>
+    </div>
+</section>
 
 <!-- ================= SERVICES ================= -->
 <section class="services">
@@ -31,21 +39,32 @@
 
         <a href="/website" class="card">
             🌐 Web Development
+            <p>Modern responsive websites</p>
         </a>
 
         <a href="/mobile" class="card">
             📱 Mobile App Development
+            <p>Android & iOS applications</p>
         </a>
 
         <a href="/software" class="card">
             💻 Software Solutions
+            <p>Custom business software</p>
         </a>
 
         <a href="/python" class="card">
             ⚙️ Python Automation
+            <p>Automation & AI tools</p>
         </a>
 
     </div>
+</section>
+
+<!-- ================= CTA SECTION ================= -->
+<section class="cta">
+    <h2>Have an Idea?</h2>
+    <p>Let us turn it into reality</p>
+    <a href="/create" class="btn">Get Started</a>
 </section>
 
 <!-- ================= REQUEST FORM ================= -->
@@ -64,7 +83,6 @@
 
         <textarea name="message" rows="5" placeholder="Project Details"></textarea>
 
-        <!-- ✅ IMPORTANT: SUBMIT BUTTON -->
         <button type="submit">Submit Request</button>
 
     </form>

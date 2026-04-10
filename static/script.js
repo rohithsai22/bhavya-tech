@@ -4,7 +4,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (form) {
         form.addEventListener("submit", function () {
-            alert("Thank you! Bhavya Tech will contact you soon.");
+
+            // Create toast
+            const toast = document.createElement("div");
+            toast.innerText = "✅ Request submitted successfully!";
+            toast.classList.add("toast");
+
+            document.body.appendChild(toast);
+
+            // Show animation
+            setTimeout(() => {
+                toast.classList.add("show");
+            }, 100);
+
+            // Remove after 3 seconds
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
         });
     }
 

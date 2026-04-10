@@ -1,51 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Request a Project - Bhavya Tech</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends "base.html" %}
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
+{% block content %}
 
-<body>
-
-<!-- NAVBAR -->
-<nav class="navbar">
-    <a href="/">Home</a>
-    <a href="/services">Services</a>
-    <a href="/request">Contact</a>
-</nav>
-
-<!-- HEADER -->
 <header>
     <h1>Request a Project</h1>
-    <p>Tell us about your idea and we will build it.</p>
 </header>
 
-<!-- FORM SECTION -->
 <section class="form-section">
 
-    <form action="{{ url_for('request_page') }}" method="POST">
+    <form method="POST" action="/request">
 
         <input type="text" name="name" placeholder="Your Name" required>
 
-        <input type="email" name="email" placeholder="Your Email" required>
+        <input type="email" name="email" placeholder="Email" required>
 
-        <input type="text" name="mobile" placeholder="Mobile Number" required>
+        <input type="text" name="mobile" placeholder="Mobile Number">
 
-        <textarea name="message" rows="5" placeholder="Your Project Details" required></textarea>
+        <textarea name="message" placeholder="Project Details"></textarea>
 
-        <button type="submit">Submit Request</button>
+        <button type="submit">Submit</button>
 
     </form>
 
 </section>
 
-<!-- FOOTER -->
-<footer>
-    <p>© 2026 Bhavya Tech. All rights reserved.</p>
-</footer>
-
-</body>
-</html>
+{% endblock %}

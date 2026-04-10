@@ -3,9 +3,40 @@ import sqlite3
 import os
 import smtplib
 from email.message import EmailMessage
+from openai import OpenAI
 
-app = Flask(__name__)
-app.secret_key = "bhavya_super_secret_key"
+app = Flask(_name_)
+app.secret_key = os.environ.get("SECRET_KEY", "bhavya_secret")
+
+# ---------------- AI SETUP ----------------
+client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+
+def generate_website(user_input):
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {
+                    "role": "user",
+                    "content": f"""
+Create a professional real-world website.
+
+Requirements:
+- Clean modern UI
+- Looks like built by developer (not AI)
+- Include navbar, hero, services, contact, footer
+- Responsive design
+
+Idea: {user_input}
+
+Return only full HTML with internal CSS.
+"""
+                }
+            ]
+        )
+        return response.choices[0].message.content
+    except Exception as e:
+        return f"<h2>Error generating website</h2><p>{e}</p>"
 
 
 # ---------------- DATABASE ----------------
@@ -38,14 +69,14 @@ def save_to_db(name, email, mobile, message):
     conn.close()
 
 
-# ---------------- EMAIL FUNCTION ----------------
+# ---------------- EMAIL ----------------
 def send_email(name, email, mobile, message):
     try:
         EMAIL_USER = os.environ.get("EMAIL_USER")
         EMAIL_PASS = os.environ.get("EMAIL_PASS")
 
         if not EMAIL_USER or not EMAIL_PASS:
-            print("Email environment variables not set!")
+            print("❌ Email config missing")
             return
 
         msg = EmailMessage()
@@ -62,17 +93,17 @@ Mobile: {mobile}
 Message: {message}
 """)
 
-        # ✅ Add timeout here (VERY IMPORTANT)
         server = smtplib.SMTP("smtp.gmail.com", 587, timeout=10)
         server.starttls()
         server.login(EMAIL_USER, EMAIL_PASS)
         server.send_message(msg)
         server.quit()
 
-        print("Email sent successfully!")
+        print("✅ Email sent")
 
     except Exception as e:
-        print("Email sending failed:", e)
+        print("❌ Email failed:", e)
+
 
 # ---------------- ROUTES ----------------
 @app.route("/")
@@ -105,7 +136,18 @@ def website():
     return render_template("website.html")
 
 
-# ---------------- REQUEST FORM ----------------
+# ---------------- AI BUILDER ----------------
+@app.route("/create", methods=["GET", "POST"])
+def create():
+    if request.method == "POST":
+        idea = request.form.get("idea")
+        result = generate_website(idea)
+        return render_template("result.html", code=result)
+
+    return render_template("create.html")
+
+
+# ---------------- REQUEST ----------------
 @app.route("/request", methods=["GET", "POST"])
 def request_page():
     if request.method == "POST":
@@ -123,8 +165,8 @@ def request_page():
 
 
 # ---------------- ADMIN ----------------
-admin_username = "bhavya"
-admin_password = "83418"
+admin_username = os.environ.get("ADMIN_USER", "admin")
+admin_password = os.environ.get("ADMIN_PASS", "12345")
 
 
 @app.route("/admin")
@@ -151,7 +193,7 @@ def admin_login():
             session["admin"] = True
             return redirect("/admin")
         else:
-            return "Invalid Username or Password"
+            return render_template("admin_login.html", error="Invalid credentials")
 
     return render_template("admin_login.html")
 
@@ -163,5 +205,5 @@ def logout():
 
 
 # ---------------- RUN ----------------
-if __name__ == "__main__":
-    app.run(debug=True)
+if _name_ == "_main_":
+    app.run(debug=True

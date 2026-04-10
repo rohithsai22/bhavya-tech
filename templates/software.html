@@ -1,61 +1,27 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Software Development - Bhavya Tech</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
+{% extends "base.html" %}
 
-<body>
+{% block content %}
 
-<!-- NAVBAR -->
-<nav class="navbar">
-    <a href="/">Home</a>
-    <a href="/services">Services</a>
-    <a href="/request">Contact</a>
-</nav>
-
-<!-- HEADER -->
 <header>
     <h1>💻 Software Development</h1>
-    <p>Custom software solutions built for performance and scalability.</p>
 </header>
 
-<!-- CONTENT SECTION -->
 <section class="services">
 
-    <div class="card" style="max-width:600px; margin:auto;">
+    <div class="card center-card">
 
-        <p>
-            We develop secure and scalable desktop software 
-            tailored to your business needs.
-        </p>
+        <p>Custom software for businesses.</p>
 
-        <br>
+        <ul>
+            <li>Desktop Apps</li>
+            <li>Management Systems</li>
+            <li>Billing Software</li>
+        </ul>
 
-        <p>
-            ✔ Custom Desktop Applications  
-            ✔ Business Management Systems  
-            ✔ Billing & Inventory Software  
-            ✔ System Maintenance & Support  
-        </p>
-
-        <br>
-
-        <a href="/request" class="btn">Start Your Project</a>
+        <a href="/request" class="btn">Start Project</a>
 
     </div>
 
-    <br><br>
-
-    <a href="/services" class="btn">⬅ Back to Services</a>
-
 </section>
 
-<!-- FOOTER -->
-<footer>
-    <p>© 2026 Bhavya Tech. All rights reserved.</p>
-</footer>
-
-</body>
-</html>
+{% endblock %}
