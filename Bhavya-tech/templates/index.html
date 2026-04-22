@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bhavya Tech</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="logo">Bhavya Tech</div>
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/services">Services</a>
+        <a href="/request">Contact</a>
+        <a href="/request" class="btn-nav">Start Project</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Build Your Digital Future</h1>
+        <p>We create Websites, Apps & Smart Solutions</p>
+        <a href="/request" class="btn">Start Your Project</a>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+    <h2>Our Services</h2>
+
+    <div class="service-container">
+
+        <a href="/website" class="card">
+            🌐 Web Development
+            <p>Modern responsive websites</p>
+        </a>
+
+        <a href="/mobile" class="card">
+            📱 Mobile App Development
+            <p>Android & iOS applications</p>
+        </a>
+
+        <a href="/software" class="card">
+            💻 Software Solutions
+            <p>Custom business software</p>
+        </a>
+
+        <a href="/python" class="card">
+            ⚙️ Python Automation
+            <p>Automation & AI tools</p>
+        </a>
+
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+    <h2>Have an Idea?</h2>
+    <p>Let us turn it into reality</p>
+    <a href="/request" class="btn">Get Started</a>
+</section>
+
+<!-- FORM -->
+<section class="form-section">
+    <h2>Request a Project</h2>
+
+    <form method="POST" action="/request">
+
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Email Address" required>
+        <input type="text" name="mobile" placeholder="Mobile Number">
+        <input type="text" name="project_type" placeholder="Project Type (Website / App)">
+        <textarea name="message" rows="5" placeholder="Project Details"></textarea>
+
+        <button type="submit">Submit Request</button>
+
+    </form>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 Bhavya Tech. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

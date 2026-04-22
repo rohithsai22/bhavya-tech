@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<header class="service-header">
+    <h1>🚀 Request a Project</h1>
+    <p>Tell us your idea — we’ll build it for you</p>
+</header>
+
+<section class="form-section">
+
+    <form method="POST" action="/request" class="request-form">
+
+        <input type="text" name="name" placeholder="Your Name" required>
+
+        <input type="email" name="email" placeholder="Email Address" required>
+
+        <input type="text" name="mobile" placeholder="Mobile Number">
+
+        <!-- ✅ NEW FIELD -->
+        <select name="project_type" required>
+            <option value="">Select Project Type</option>
+            <option>Website</option>
+            <option>Mobile App</option>
+            <option>Software</option>
+            <option>Automation</option>
+        </select>
+
+        <!-- ✅ NEW FIELD -->
+        <input type="text" name="budget" placeholder="Estimated Budget (optional)">
+
+        <textarea name="message" rows="5" placeholder="Describe your project in detail..." required></textarea>
+
+        <button type="submit">Submit Request</button>
+
+    </form>
+
+</section>
+
+{% endblock %}
